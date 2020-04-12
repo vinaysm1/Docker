@@ -1,0 +1,44 @@
+Docker Swam:
+Freely available with CE (community edition)
+Features:
+ - High available
+ - Load Balancing
+ - Resiliency
+ - Placement of new load
+ - Declarative service model
+
+Setting up Swarm:
+ - docker swarm init - To start a swarm for the first time.
+ Most of the swarm management commands run from the master node only.
+ - docker node ls (Runs only from Master/Leader)
+ - DS-Master - docker swarm join-token (worker/manager) run from the master node
+ - docker swarm join --token SWMTKN-1-4v24l56nf5uryrvona02zs4wi72l1tuseqtteb2fyrz7cks59l-98ngizzq5vn7bxubhx51anlyn 10.30.1.243:2377
+ - DS-Node -
+Copy and run this above output to the worker node.
+ - docker info | grep -i swarm - to check the swarm status for the node.
+
+ - docker service create --name <app1> --replicate=4 ngnix
+This will create 4 containers and distribute those across the swarm nodes and will maintain HA and resilience in the event of container or node failure .
+ - docker service ls - lists the services
+ - docker service update --autolock true - Store this key safely for future use.
+ SWMKEY-1-ShgKoZ6HJUYr8/ePyX6zkTKB9e5cWx6qVrq7rvaiWJM
+ - docker swarm unlock-key - To get the lock key incase you forgot (This is possible only if the docker/swarm has not restarted since you enabled autolock.)
+ SWMKEY-1-ShgKoZ6HJUYr8/ePyX6zkTKB9e5cWx6qVrq7rvaiWJM
+ - docker swarm  unlock-key --rotate
+ SWMKEY-1-4/hrMRJElPyNzZjIz9qZBw2gXshArb/gqKPicUb1zQ4
+
+ - docker node promote <node id> - To promote a node as master. Node ID can be retrieved from
+ docker node ls
+ - docker node demote <node id> - To demote a node as worker node.
+ - docker node update --availability drain <node id> - Will move all the containers to other available nodes from the given node.
+ no new containers will be hosted on the drained node.
+
+Quoram:
+Docker Quoram is based on Raft Concensus
+(n-1)/2 -
+(n/2)+1 - (for the swarm to run)
+
+ Stack:
+ Is text file written in YAML file used to deploy a stack.
+ Used to define a complete, multi-tiered, highly available, highly scalable application to a swarm cluster.
+ Deploying collection of services across swarm node cluster.

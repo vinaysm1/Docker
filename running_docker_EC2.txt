@@ -1,0 +1,12 @@
+Running Docker on EC2:
+Select a free tier AMI which is docker ready  - Amazon Linux AMI 2018.03.0.20200318.2 x86_64 HVM gp2
+Run it in public subnet and setup RDP, HTTPS security group.
+Run following after login to the EC2 with ec2-user -
+Sudo bash
+1. yum update -y
+2. yum install docker -y
+3. yum update -y
+4. system docker start
+4. usermod -aG docker ec2-user
+
+If setting up Swarm, open SG TCP port 2377 for the nodes to communicate and join. 
