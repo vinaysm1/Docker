@@ -1,0 +1,3 @@
+From kv1980/debian_nano
+ADD notes.txt /notes.txt
+CMD ["nano", "notes.txt"]

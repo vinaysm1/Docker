@@ -1,0 +1,12 @@
+FROM ubuntu:14.04
+MAINTAINER Krishna Vinay "vinaysm1@gmail.com"
+ENV name KV
+RUN apt-get update -y
+VOLUME [/shared-folder]
+WORKDIR /shared-folder/
+ADD notes.txt /shared-folder/notes.txt
+RUN echo "Adding content to notes.text via the docker build." >> notes.txt
+#ENTRYPOINT ["/bin/bash","-c","echo Hello! $name", "cat notes.txt"]
+#ENTRYPOINT ["/bin/bash","-c", "cat notes.txt"]
+#ENTRYPOINT ["/bin/bash","-c", "ls -la"]
+CMD echo "Hello! $name" && cat notes.txt && touch test.txt && ls -l

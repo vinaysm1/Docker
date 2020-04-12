@@ -1,0 +1,7 @@
+FROM kv1980/debian_nano
+MAINTAINER Krishna Vinay vinaysm1@gmail.com
+VOLUME ["/shared-folder"]
+WORKDIR /shared-folder
+#ADD notes.txt notes.txt
+#CMD ["nano", "notes.txt"]
+CMD touch test.txt && ls -la && pwd
