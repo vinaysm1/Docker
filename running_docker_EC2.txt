@@ -9,4 +9,4 @@ Sudo bash
 4. system docker start
 4. usermod -aG docker ec2-user
 
-If setting up Swarm, open SG TCP port 2377 for the nodes to communicate and join. 
+If setting up Swarm, open SG TCP port 2377 for the nodes to communicate and join.
