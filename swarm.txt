@@ -35,7 +35,7 @@ This will create 4 containers and distribute those across the swarm nodes and wi
 
 Quoram:
 Docker Quoram is based on Raft Concensus
-(n-1)/2 -
+(n-1)/2 - 
 (n/2)+1 - (for the swarm to run)
 
  Stack:
